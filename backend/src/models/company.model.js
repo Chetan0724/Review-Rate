@@ -15,11 +15,19 @@ const companySchema = new mongoose.Schema(
     },
     foundedOn: { type: String, required: true },
     logo: { type: String },
-    description: { type: String },
     avgRating: { type: Number, default: 0 },
     totalReviews: { type: Number, default: 0 },
+    createdBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
   },
   { timestamps: true }
 );
+
+companySchema.index({ companyName: "text" });
+companySchema.index({ "address.city": 1 });
+companySchema.index({ avgRating: -1 });
 
 export const Company = mongoose.model("Company", companySchema);

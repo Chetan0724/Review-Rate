@@ -17,6 +17,23 @@ app.use(express.static("public"));
 app.use(cookieParser());
 
 import userRoutes from "./routes/user.routes.js";
+import companyRoutes from "./routes/company.routes.js";
+import reviewRoutes from "./routes/review.routes.js";
+
 app.use("/api/v1/users", userRoutes);
+app.use("/api/v1/companies", companyRoutes);
+app.use("/api/v1/reviews", reviewRoutes);
+
+app.use((err, req, res, next) => {
+  const statusCode = err.statusCode || 500;
+  const message = err.message || "Internal Server Error";
+
+  res.status(statusCode).json({
+    success: false,
+    statusCode,
+    message,
+    errors: err.errors || [],
+  });
+});
 
 export { app };

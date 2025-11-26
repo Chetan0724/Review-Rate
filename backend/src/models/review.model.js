@@ -18,4 +18,7 @@ const reviewSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
+reviewSchema.index({ companyId: 1, createdAt: -1 });
+reviewSchema.index({ rating: -1 });
+
 export const Review = mongoose.model("Review", reviewSchema);
