@@ -1,5 +1,5 @@
 import { apiClient } from "./client";
-import { type AuthResponse, type User } from "../types";
+import type { AuthResponse, User } from "../types";
 
 interface LoginCredentials {
   email: string;
@@ -43,9 +43,12 @@ export const authApi = {
   },
 
   async logout(): Promise<void> {
-    await apiClient.post("/users/logout");
-    localStorage.removeItem("accessToken");
-    localStorage.removeItem("refreshToken");
+    try {
+      await apiClient.post("/users/logout");
+    } finally {
+      localStorage.removeItem("accessToken");
+      localStorage.removeItem("refreshToken");
+    }
   },
 
   async getCurrentUser(): Promise<User> {
@@ -53,12 +56,19 @@ export const authApi = {
     return response.data;
   },
 
-  async refreshToken(): Promise<void> {
+  async refreshToken(): Promise<{ accessToken: string; refreshToken: string }> {
     const refreshToken = localStorage.getItem("refreshToken");
+    if (!refreshToken) {
+      throw new Error("No refresh token available");
+    }
+
     const response = await apiClient.post<{
       data: { accessToken: string; refreshToken: string };
     }>("/users/refresh-token", { refreshToken });
+
     localStorage.setItem("accessToken", response.data.accessToken);
     localStorage.setItem("refreshToken", response.data.refreshToken);
+
+    return response.data;
   },
 };

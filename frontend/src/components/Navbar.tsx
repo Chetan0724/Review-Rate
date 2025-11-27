@@ -75,7 +75,7 @@ export const Navbar = ({ onSearch }: NavbarProps) => {
                   </div>
                   <button
                     onClick={handleLogout}
-                    className="px-4 py-2 text-sm font-medium gradient-purple text-white rounded-lg hover:opacity-90"
+                    className="px-4 py-2 text-sm font-medium gradient-purple text-white rounded-md hover:opacity-90 cursor-pointer"
                   >
                     Logout
                   </button>

@@ -154,7 +154,7 @@ export const AddCompanyModal = ({
               value={companyName}
               onChange={(e) => setCompanyName(e.target.value)}
               placeholder="Enter company name"
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
             />
             {errors.companyName && (
               <p className="text-red-500 text-sm mt-1">{errors.companyName}</p>
@@ -171,7 +171,7 @@ export const AddCompanyModal = ({
                 value={locationQuery}
                 onChange={(e) => setLocationQuery(e.target.value)}
                 placeholder="Select Location"
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
               />
               <MapPin
                 className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
@@ -179,7 +179,7 @@ export const AddCompanyModal = ({
               />
 
               {locationResults.length > 0 && (
-                <div className="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg max-h-60 overflow-y-auto">
+                <div className="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-y-auto">
                   {locationResults.map((result, index) => (
                     <button
                       key={index}
@@ -208,7 +208,7 @@ export const AddCompanyModal = ({
                 value={foundedOn}
                 onChange={(e) => setFoundedOn(e.target.value)}
                 placeholder="DD/MM/YYYY"
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
               />
               <Calendar
                 className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"

@@ -1,5 +1,3 @@
-/* eslint-disable react-refresh/only-export-components */
-
 import {
   createContext,
   useContext,
@@ -34,13 +32,17 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     const initAuth = async () => {
       const token = localStorage.getItem("accessToken");
-      if (token) {
+      const refreshToken = localStorage.getItem("refreshToken");
+
+      if (token && refreshToken) {
         try {
           const currentUser = await authApi.getCurrentUser();
           setUser(currentUser);
         } catch (error) {
+          console.error("Failed to get current user:", error);
           localStorage.removeItem("accessToken");
           localStorage.removeItem("refreshToken");
+          setUser(null);
         }
       }
       setIsLoading(false);
@@ -70,13 +72,23 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const logout = async () => {
-    await authApi.logout();
-    setUser(null);
+    try {
+      await authApi.logout();
+    } finally {
+      setUser(null);
+      localStorage.removeItem("accessToken");
+      localStorage.removeItem("refreshToken");
+    }
   };
 
   const refreshUser = async () => {
-    const currentUser = await authApi.getCurrentUser();
-    setUser(currentUser);
+    try {
+      const currentUser = await authApi.getCurrentUser();
+      setUser(currentUser);
+    } catch (error) {
+      console.error("Failed to refresh user:", error);
+      setUser(null);
+    }
   };
 
   return (
@@ -96,6 +108,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   );
 };
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useAuth = () => {
   const context = useContext(AuthContext);
   if (context === undefined) {
