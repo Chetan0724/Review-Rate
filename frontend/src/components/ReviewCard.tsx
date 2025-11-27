@@ -26,7 +26,7 @@ export const ReviewCard = ({ review }: ReviewCardProps) => {
   };
 
   return (
-    <div className="bg-white border border-gray-200 rounded-xl p-6">
+    <div className="rounded-xl p-6">
       <div className="flex items-start gap-4">
         <div className="w-12 h-12 rounded-full flex items-center justify-center bg-gray-100 flex-shrink-0">
           {review.userId.avatar ? (

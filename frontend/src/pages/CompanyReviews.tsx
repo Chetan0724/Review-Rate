@@ -91,8 +91,8 @@ export const CompanyReviews = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="bg-white border border-gray-200 rounded-xl p-8 mb-8">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 bg-white">
+        <div className="p-8 mb-8">
           <div className="flex items-start gap-6">
             <div className="w-24 h-24 rounded-lg flex items-center justify-center bg-gray-100 flex-shrink-0">
               {company.logo ? (
@@ -126,12 +126,12 @@ export const CompanyReviews = () => {
             </div>
 
             <div className="text-right">
-              <div className="text-sm text-gray-600 mb-4">
+              <div className="text-xs text-neutral-500 mb-4">
                 Founded on {formatDate(company.foundedOn)}
               </div>
               <button
                 onClick={handleAddReview}
-                className="px-6 py-2 gradient-purple text-white rounded-lg font-medium hover:opacity-90"
+                className="px-6 py-2 gradient-purple text-white rounded-md font-medium hover:opacity-90"
               >
                 + Add Review
               </button>
@@ -140,7 +140,7 @@ export const CompanyReviews = () => {
         </div>
 
         <div className="mb-6">
-          <h2 className="text-2xl font-semibold text-gray-900">
+          <h2 className="text-xs text-neutral-500">
             Result Found: {totalReviews}
           </h2>
         </div>

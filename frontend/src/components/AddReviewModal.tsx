@@ -74,7 +74,6 @@ export const AddReviewModal = ({
         </button>
 
         <div className="mb-6">
-          <div className="w-16 h-16 gradient-purple rounded-full mb-4"></div>
           <h2 className="text-2xl font-bold">Add Review</h2>
         </div>
 

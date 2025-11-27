@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router";
-import { Search, Star } from "lucide-react";
+import { Search } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
 import { LoginModal } from "./LoginModal";
 import { SignupModal } from "./SignupModal";
+import logo from "../assets/logo.svg";
 
 interface NavbarProps {
   onSearch: (query: string) => void;
@@ -32,12 +33,12 @@ export const Navbar = ({ onSearch }: NavbarProps) => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <Link to="/" className="flex items-center gap-2">
-              <div className="w-10 h-10 gradient-purple rounded-full flex items-center justify-center">
-                <Star className="text-white" size={24} />
+              <img src={logo} alt="logo" />
+              <div className="text-2xl">
+                <span className="font-light">Review</span>
+                <span className="text-gradient-purple font-light">&</span>
+                <span className="font-semibold">RATE</span>
               </div>
-              <span className="text-xl font-semibold">
-                Review&<span className="font-bold">RATE</span>
-              </span>
             </Link>
 
             <form onSubmit={handleSearch} className="flex-1 max-w-xl mx-8">
@@ -47,10 +48,11 @@ export const Navbar = ({ onSearch }: NavbarProps) => {
                   placeholder="Search..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                  className="w-full pl-3 pr-10 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
                 />
+
                 <Search
-                  className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
+                  className="absolute  right-3 top-1/2 transform -translate-y-1/2 text-gray-400"
                   size={20}
                 />
               </div>
@@ -82,13 +84,13 @@ export const Navbar = ({ onSearch }: NavbarProps) => {
                 <>
                   <button
                     onClick={() => setShowSignupModal(true)}
-                    className="px-4 py-2 text-sm font-medium gradient-purple text-white rounded-lg hover:opacity-90"
+                    className="px-4 text-sm cursor-pointer"
                   >
                     SignUp
                   </button>
                   <button
                     onClick={() => setShowLoginModal(true)}
-                    className="px-4 py-2 text-sm font-medium gradient-purple text-white rounded-lg hover:opacity-90"
+                    className="px-4 text-sm cursor-pointer"
                   >
                     Login
                   </button>

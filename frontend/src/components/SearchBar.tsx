@@ -33,10 +33,10 @@ export const SearchBar = ({
                 value={city}
                 onChange={(e) => setCity(e.target.value)}
                 placeholder="Indore, Madhya Pradesh, India"
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                className="w-full pl-2 pr-4 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
               />
               <MapPin
-                className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
+                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400"
                 size={20}
               />
             </form>
@@ -46,7 +46,7 @@ export const SearchBar = ({
             <button
               type="button"
               onClick={handleCitySearch}
-              className="px-6 py-2 gradient-purple text-white rounded-lg font-medium hover:opacity-90"
+              className="px-6 py-2 gradient-purple text-white rounded-md cursor-pointer font-medium hover:opacity-90"
             >
               Find Company
             </button>
@@ -54,13 +54,13 @@ export const SearchBar = ({
             <button
               type="button"
               onClick={onAddCompany}
-              className="px-6 py-2 gradient-purple text-white rounded-lg font-medium hover:opacity-90"
+              className="px-6 py-2 gradient-purple text-white rounded-md font-medium hover:opacity-90 cursor-pointer"
             >
               + Add Company
             </button>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-xs font-medium text-neutral-500 mb-2">
                 Sort:
               </label>
               <select
