@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { MapPin } from "lucide-react";
+import { MapPin, ChevronDown } from "lucide-react";
 
 interface SearchBarProps {
   onCitySearch: (city: string) => void;
@@ -46,7 +46,7 @@ export const SearchBar = ({
             <button
               type="button"
               onClick={handleCitySearch}
-              className="px-6 py-2 gradient-purple text-white rounded-md cursor-pointer font-medium hover:opacity-90"
+              className="px-6 py-2 gradient-purple text-white rounded-md cursor-pointer font-medium hover:opacity-90 text-nowrap"
             >
               Find Company
             </button>
@@ -54,7 +54,7 @@ export const SearchBar = ({
             <button
               type="button"
               onClick={onAddCompany}
-              className="px-6 py-2 gradient-purple text-white rounded-md font-medium hover:opacity-90 cursor-pointer"
+              className="px-6 py-2 gradient-purple text-white rounded-md font-medium hover:opacity-90 cursor-pointer text-nowrap"
             >
               + Add Company
             </button>
@@ -63,14 +63,20 @@ export const SearchBar = ({
               <label className="block text-xs font-medium text-neutral-500 mb-2">
                 Sort:
               </label>
-              <select
-                onChange={(e) => onSortChange(e.target.value)}
-                className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
-              >
-                <option value="companyName">Name</option>
-                <option value="avgRating">Rating</option>
-                <option value="address.city">Location</option>
-              </select>
+              <div className="relative">
+                <select
+                  onChange={(e) => onSortChange(e.target.value)}
+                  className="appearance-none px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                >
+                  <option value="companyName">Name</option>
+                  <option value="avgRating">Rating</option>
+                  <option value="address.city">Location</option>
+                </select>
+                <ChevronDown
+                  size={18}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none"
+                />
+              </div>
             </div>
           </div>
         </div>
