@@ -43,8 +43,10 @@ export const Home = ({ searchQuery }: HomeProps) => {
       setCompanies(response.companies);
       setTotalPages(response.pagination.totalPages);
       setTotalCompanies(response.pagination.totalCompanies);
-    } catch (error: any) {
-      toast.error(error.message || "Failed to fetch companies");
+    } catch (error) {
+      const message =
+        error instanceof Error ? error.message : "Failed to fetch companies";
+      toast.error(message);
     } finally {
       setIsLoading(false);
     }

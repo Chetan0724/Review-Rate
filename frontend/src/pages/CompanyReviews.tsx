@@ -34,8 +34,12 @@ export const CompanyReviews = () => {
     try {
       const data = await companyApi.getCompanyById(companyId!);
       setCompany(data);
-    } catch (error: any) {
-      toast.error(error.message || "Failed to fetch company details");
+    } catch (error) {
+      const message =
+        error instanceof Error
+          ? error.message
+          : "Failed to fetch company details";
+      toast.error(message);
     }
   };
 
@@ -52,8 +56,10 @@ export const CompanyReviews = () => {
       setTotalPages(response.pagination.totalPages);
       setTotalReviews(response.stats.totalReviews);
       setAvgRating(response.stats.avgRating);
-    } catch (error: any) {
-      toast.error(error.message || "Failed to fetch reviews");
+    } catch (error) {
+      const message =
+        error instanceof Error ? error.message : "Failed to fetch reviews";
+      toast.error(message);
     } finally {
       setIsLoading(false);
     }

@@ -123,8 +123,10 @@ export const AddCompanyModal = ({
       setLogoPreview("");
       setLocationQuery("");
       setSelectedLocation(null);
-    } catch (error: any) {
-      toast.error(error.message || "Failed to add company");
+    } catch (error) {
+      const message =
+        error instanceof Error ? error.message : "Failed to add company";
+      toast.error(message);
     } finally {
       setIsLoading(false);
     }
