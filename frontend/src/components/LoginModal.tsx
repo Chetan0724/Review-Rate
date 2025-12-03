@@ -48,8 +48,9 @@ export const LoginModal = ({
       onClose();
       setEmail("");
       setPassword("");
-    } catch (error: any) {
-      toast.error(error.message || "Login failed");
+    } catch (error) {
+      const message = error instanceof Error ? error.message : "Login failed";
+      toast.error(message);
     } finally {
       setIsLoading(false);
     }
@@ -115,7 +116,7 @@ export const LoginModal = ({
           Don't have an account?{" "}
           <button
             onClick={onSwitchToSignup}
-            className="text-gradient-purple font-medium"
+            className="text-gradient-purple font-medium cursor-pointer"
           >
             Sign Up
           </button>

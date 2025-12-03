@@ -186,7 +186,7 @@ export const SignupModal = ({
           Already have an account?{" "}
           <button
             onClick={onSwitchToLogin}
-            className="text-gradient-purple font-medium"
+            className="text-gradient-purple font-medium cursor-pointer"
           >
             Login
           </button>
