@@ -67,6 +67,7 @@ class ApiClient {
     const token = localStorage.getItem("accessToken");
 
     const config: RequestInit = {
+      credentials: "include",
       ...restOptions,
       headers: {
         ...headers,

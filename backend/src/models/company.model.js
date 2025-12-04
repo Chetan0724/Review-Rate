@@ -13,7 +13,7 @@ const companySchema = new mongoose.Schema(
       postcode: { type: String },
       placeId: { type: String },
     },
-    foundedOn: { type: String, required: true },
+    foundedOn: { type: Date, required: true },
     logo: { type: String },
     avgRating: { type: Number, default: 0 },
     totalReviews: { type: Number, default: 0 },
