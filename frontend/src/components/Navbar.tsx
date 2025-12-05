@@ -14,6 +14,7 @@ export const Navbar = ({ onSearch }: NavbarProps) => {
   const { user, isAuthenticated, logout } = useAuth();
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showSignupModal, setShowSignupModal] = useState(false);
+  const [showSearchBar, setShowSearchBar] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
 
@@ -31,17 +32,20 @@ export const Navbar = ({ onSearch }: NavbarProps) => {
     <>
       <nav className="bg-white border-b border-gray-200 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
+          <div className="flex items-center justify-between h-12 sm:h-16">
             <Link to="/" className="flex items-center gap-2">
-              <img src={logo} alt="logo" />
-              <div className="text-2xl">
+              <img src={logo} alt="logo" className="w-5 sm:w-7" />
+              <div className="sm:text-2xl">
                 <span className="font-light">Review</span>
                 <span className="text-gradient-purple font-light">&</span>
                 <span className="font-semibold">RATE</span>
               </div>
             </Link>
 
-            <form onSubmit={handleSearch} className="flex-1 max-w-xl mx-8">
+            <form
+              onSubmit={handleSearch}
+              className="flex-1 max-w-xl mx-8 hidden sm:inline-block"
+            >
               <div className="relative">
                 <input
                   type="text"
@@ -62,6 +66,11 @@ export const Navbar = ({ onSearch }: NavbarProps) => {
               {isAuthenticated ? (
                 <>
                   <div className="flex items-center gap-2">
+                    <Search
+                      className="text-gray-400 sm:hidden"
+                      size={20}
+                      onClick={() => setShowSearchBar((prev) => !prev)}
+                    />
                     {user?.avatar && (
                       <img
                         src={user.avatar}
@@ -82,15 +91,21 @@ export const Navbar = ({ onSearch }: NavbarProps) => {
                 </>
               ) : (
                 <>
+                  <Search
+                    className="text-gray-400 sm:hidden"
+                    size={20}
+                    onClick={() => setShowSearchBar((prev) => !prev)}
+                  />
+
                   <button
                     onClick={() => setShowSignupModal(true)}
-                    className="px-4 text-sm cursor-pointer"
+                    className="sm:px-4 text-sm cursor-pointer"
                   >
                     SignUp
                   </button>
                   <button
                     onClick={() => setShowLoginModal(true)}
-                    className="px-4 text-sm cursor-pointer"
+                    className="sm:px-4 text-sm cursor-pointer"
                   >
                     Login
                   </button>
@@ -98,6 +113,19 @@ export const Navbar = ({ onSearch }: NavbarProps) => {
               )}
             </div>
           </div>
+          {showSearchBar && (
+            <form onSubmit={handleSearch} className="sm:hidden mb-3">
+              <div>
+                <input
+                  type="text"
+                  placeholder="Search..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-full px-3 py-1 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 "
+                />
+              </div>
+            </form>
+          )}
         </div>
       </nav>
 
